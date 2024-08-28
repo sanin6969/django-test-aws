@@ -1,0 +1,38 @@
+{% extends "home.html" %}
+
+{% block home %}
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh; background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(2px);">
+    <div class="row bg-blur rounded p-4" style="max-width: 600px;">
+      <div style="background-color: rgba(0, 0, 0, 0.1); backdrop-filter: blur(0px);" class="row  rounded p-4" style="max-width: 600px;">
+        <div class="col-md-6 order-md-2 d-flex justify-content-center align-items-center">
+            <div>
+                <h1 class=" glow text-center mb-4 text-white">SIGN IN</h1>
+                <form method="POST" action='{% url "login" %}'>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username" class='text-white'>Username:</label>
+                        <input type="text" class="form-control"  name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password"class='text-white'>Password:</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+
+                    <p class="text-white fs-6">Not a user <span><a href="{% url "signup" %}">SignUp </a>?</span></p>
+                    
+                    <button type="submit"class="glow-on-hover" type="button">Sign In</button>
+                    {% if error %}
+                    <p class="text-danger mt-3">{{ error }}</p>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 order-md-1 d-flex justify-content-center align-items-center">
+            <div class="text-center">
+                <img src="https://wallpapercave.com/wp/wp4676611.jpg" class="img-fluid rounded" alt="Image">
+            </div>
+        </div>
+     </div>
+    </div>
+</div>
+{% endblock home %}

@@ -1,0 +1,35 @@
+{% extends "home.html" %}
+{% block home %}
+<div class="container-fluid d-flex justify-content-center align-items-center text-white" style="height: 100vh; background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(2px);">
+    <button class="btn btn-dark" > <a href="{% url "home" %}">HOME</a></button>
+    <div class="row bg-blur rounded p-4" style="max-width: 600px;">
+        <div style="background-color: rgba(0, 0, 0, 0.1); backdrop-filter: blur(0px);" class="row  rounded p-4" style="max-width: 600px;">
+        <div class="col-md-6 order-md-2 d-flex justify-content-center align-items-center">
+            <div>
+                <h1 class=" glow text-center mb-4 text-white">SIGN UP</h1>
+                <form method="POST" action='{% url "signup" %}'>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{form.as_p}}
+                            {% if error %}
+                                <p style="color: red;">{{ error }}</p>
+                            {% endif %}
+                    </div>
+                    
+                    <p class="text-white fs-6">Already a user <span><a href="{% url "login" %}">Sign In </a>?</span></p>
+                    <button type="submit"class="glow-on-hover" type="button">Sign Up</button>
+                    {% if error %}
+                    <p class="text-danger mt-3">{{ error }}</p>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 order-md-1 d-flex justify-content-center align-items-center">
+            <div class="text-center">
+                <img src="https://wallpapercave.com/wp/wp4198956.jpg" class="img-fluid rounded" alt="Image">
+            </div>
+        </div>
+     </div>
+    </div>
+</div>
+{% endblock home %}
